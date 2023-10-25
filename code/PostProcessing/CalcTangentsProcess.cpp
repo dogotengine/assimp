@@ -189,6 +189,10 @@ bool CalcTangentsProcess::ProcessMesh(aiMesh *pMesh, unsigned int meshIndex) {
         bitangent.y = (- w.y * sx + v.y * tx) * dirCorrection;
         bitangent.z = (- w.z * sx + v.z * tx) * dirCorrection;
 
+        //+DOGOT
+        //Bitangents are backwards, invert them for now.
+        bitangent *= -1;
+        //-DOGOT
         // store for every vertex of that face
         for (unsigned int b = 0; b < face.mNumIndices; ++b) {
             unsigned int p = face.mIndices[b];
